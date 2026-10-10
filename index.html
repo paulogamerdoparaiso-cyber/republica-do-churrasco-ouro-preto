@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>República do Churrasco - OAutêntico Sabor de Ouro Preto</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts (Syne & Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#DC2626', // Vermelho Brasa
+              dark: '#1A0505',
+              darker: '#0B0202',
+              card: '#1C0808',
+              accent: '#EA580C', // Laranja Fogo
+              amber: '#F59E0B',  // Amarelo Ouro
+              gold: '#FBBF24',
+              emerald: '#10B981'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Syne', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0202;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #EA580C;
+      border-radius: 4px;
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #EA580C 0%, #FBBF24 50%, #EF4444 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .glass-nav {
+      background: rgba(11, 2, 2, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(234, 88, 12, 0.15);
+    }
+    .glass-card {
+      background: rgba(28, 8, 8, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(234, 88, 12, 0.12);
+    }
+    .glass-card:hover {
+      border-color: rgba(234, 88, 12, 0.35);
+      box-shadow: 0 10px 30px -10px rgba(234, 88, 12, 0.25);
+    }
+    .hero-glow {
+      background: radial-gradient(circle, rgba(234, 88, 12, 0.18) 0%, rgba(220, 38, 38, 0.08) 50%, rgba(0, 0, 0, 0) 70%);
+    }
+  </style>
+</head>
+<body class="bg-brand-darker text-slate-100 font-sans min-h-screen flex flex-col pb-12 antialiased selection:bg-brand-accent selection:text-brand-darker">
+
+  <!-- Top Banner Info Bar -->
+  <div class="bg-gradient-to-r from-brand-dark via-brand-card to-brand-dark text-slate-300 text-[11px] sm:text-xs py-2 px-4 border-b border-orange-900/30">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5">
+      <div class="flex items-center gap-3">
+        <span class="flex items-center gap-1.5 text-brand-gold font-semibold">
+          <i class="fa-solid fa-location-dot text-brand-accent"></i> Rua João Pedro da Silva, 517 - Morro do Cruzeiro, Ouro Preto/MG
+        </span>
+        <span class="hidden sm:inline text-red-950">|</span>
+        <span class="hidden sm:flex items-center gap-1 text-slate-300">
+          <i class="fa-solid fa-fire text-brand-amber"></i> Carnes Nobres, Espetinhos & Marmitex Gaúcho
+        </span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="bg-emerald-950/80 px-2.5 py-0.5 rounded-full text-[10px] uppercase font-extrabold text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+          <i class="fa-solid fa-circle-check"></i> CNPJ Verificado • Morro do Cruzeiro
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Glassmorphism Navigation -->
+  <header class="glass-nav sticky top-0 z-40 transition-all">
+    <div class="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 bg-gradient-to-tr from-brand-accent via-red-600 to-brand-gold rounded-2xl flex items-center justify-center shadow-lg shadow-orange-950/60 transform group-hover:rotate-6 transition duration-300">
+          <i class="fa-solid fa-crown text-brand-darker text-2xl font-black"></i>
+        </div>
+        <div>
+          <span class="font-display text-2xl sm:text-3xl font-black tracking-tight text-white uppercase block leading-none">
+            REPÚBLICA DO <span class="text-gradient">CHURRASCO</span>
+          </span>
+          <span class="text-[10px] uppercase tracking-widest text-orange-400/80 font-bold block mt-0.5">
+            Morro do Cruzeiro • Ouro Preto / MG
+          </span>
+        </div>
+      </a>
+
+      <!-- Quick Actions -->
+      <div class="flex items-center gap-3">
+        <button onclick="openCNPJModal()" class="hidden md:inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-orange-500/20 text-orange-200 text-xs font-bold px-3.5 py-2.5 rounded-xl transition">
+          <i class="fa-solid fa-shield-check text-brand-gold"></i> Dados Cadastrais
+        </button>
+
+        <button onclick="toggleCartModal()" class="relative bg-gradient-to-r from-brand-accent via-amber-500 to-brand-amber hover:opacity-95 text-brand-darker font-black text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-2 shadow-lg shadow-orange-950/80 uppercase tracking-wider">
+          <i class="fa-solid fa-basket-shopping text-brand-darker text-sm"></i>
+          <span class="hidden sm:inline">Minha Sacola</span>
+          <span id="header-cart-count" class="bg-brand-darker text-brand-gold font-black text-[11px] px-2 py-0.2 rounded-full">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative py-14 px-4 overflow-hidden border-b border-orange-950/40">
+    <div class="absolute inset-0 hero-glow pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
+      
+      <div class="space-y-5 text-center lg:text-left">
+        <span class="inline-flex items-center gap-2 bg-orange-950/60 border border-orange-500/30 text-orange-300 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider backdrop-blur-sm">
+          <i class="fa-solid fa-fire text-brand-accent"></i> Tradição em Ouro Preto desde 2020
+        </span>
+        <h1 class="font-display text-3xl sm:text-5xl font-black text-white leading-tight uppercase tracking-tight">
+          O Autêntico Churrasco na <span class="text-gradient">Sua Mesa</span>
+        </h1>
+        <p class="text-slate-300 text-xs sm:text-sm max-w-lg mx-auto lg:mx-0 leading-relaxed font-normal">
+          A República do Churrasco traz o melhor das carnes na brasa, marmitex completos com feijão tropeiro, porções fartas e bebidas trincando de geladas no Morro do Cruzeiro.
+        </p>
+
+        <div class="pt-2 flex flex-wrap gap-3 justify-center lg:justify-start">
+          <a href="#cardapio" class="bg-gradient-to-r from-brand-accent to-amber-500 text-brand-darker font-black text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-xl hover:scale-105 transition transform flex items-center gap-2 uppercase tracking-wider">
+            <i class="fa-solid fa-utensils"></i> Ver Cardápio Completo
+          </a>
+          <button onclick="openCNPJModal()" class="bg-white/5 hover:bg-white/10 text-slate-200 text-xs sm:text-sm font-bold px-5 py-3.5 rounded-2xl border border-white/10 transition flex items-center gap-2">
+            <i class="fa-solid fa-circle-info text-brand-accent"></i> Ficha da Empresa
+          </button>
+        </div>
+      </div>
+
+      <div class="relative flex justify-center">
+        <div class="w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-tr from-brand-accent via-red-600 to-brand-amber rounded-full blur-3xl opacity-20 absolute"></div>
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="República do Churrasco Ouro Preto" class="w-72 h-72 sm:w-96 sm:h-96 object-cover rounded-3xl shadow-2xl border-2 border-orange-500/20 transform -rotate-2 hover:rotate-0 transition duration-500 relative z-10">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HIGHLIGHT FEATURES -->
+  <section class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+      <div class="w-12 h-12 rounded-xl bg-orange-950/80 text-brand-accent flex items-center justify-center text-xl shrink-0">
+        <i class="fa-solid fa-drumstick-bite"></i>
+      </div>
+      <div>
+        <h4 class="font-display font-bold text-sm text-white">Cortes Selecionados</h4>
+        <p class="text-xs text-slate-400 mt-0.5">Picanha, alcatra, cupim e frango com tempero especial.</p>
+      </div>
+    </div>
+
+    <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+      <div class="w-12 h-12 rounded-xl bg-red-950/80 text-red-400 flex items-center justify-center text-xl shrink-0">
+        <i class="fa-solid fa-bowl-rice"></i>
+      </div>
+      <div>
+        <h4 class="font-display font-bold text-sm text-white">Pratos & Marmitex Fartos</h4>
+        <p class="text-xs text-slate-400 mt-0.5">Acompanha feijão tropeiro, vinagrete, farofa e arroz.</p>
+      </div>
+    </div>
+
+    <div class="glass-card p-5 rounded-2xl flex items-center gap-4">
+      <div class="w-12 h-12 rounded-xl bg-amber-950/80 text-brand-amber flex items-center justify-center text-xl shrink-0">
+        <i class="fa-solid fa-truck-fast"></i>
+      </div>
+      <div>
+        <h4 class="font-display font-bold text-sm text-white">Entrega em Toda Ouro Preto</h4>
+        <p class="text-xs text-slate-400 mt-0.5">Pedido rápido direto no seu WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDÁPIO PRINCIPAL -->
+  <main id="cardapio" class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full space-y-12">
+    
+    <!-- PRATOS & MARMITEX DE CHURRASCO -->
+    <section class="space-y-5">
+      <div class="flex items-center justify-between border-b border-orange-950/60 pb-3">
+        <div>
+          <span class="text-brand-accent font-extrabold text-xs uppercase tracking-widest">Almoço & Jantar</span>
+          <h3 class="text-2xl font-display font-black text-white">Pratos & Marmitex Executivos</h3>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="glass-card p-4 rounded-2xl flex flex-col justify-between transition">
+          <div>
+            <div class="h-44 bg-cover bg-center rounded-xl relative mb-3" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80');">
+              <span class="absolute top-2 right-2 bg-brand-gold text-brand-darker text-[10px] font-black px-2.5 py-0.5 rounded-full">Mais Pedido</span>
+            </div>
+            <h4 class="font-display font-bold text-base text-white">Marmitex Churrasco Misto</h4>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Picanha, linguiça e frango, acompanhado de feijão tropeiro, arroz, vinagrete e farofa.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+            <span class="text-lg font-black text-brand-gold">R$ 32,00</span>
+            <button onclick="addToCart('Marmitex Churrasco Misto', 32.00)" class="bg-brand-accent hover:bg-orange-600 text-brand-darker text-xs font-black px-4 py-2.5 rounded-xl transition flex items-center gap-1.5 uppercase">
+              <i class="fa-solid fa-plus"></i> Pedir
+            </button>
+          </div>
+        </div>
+
+        <div class="glass-card p-4 rounded-2xl flex flex-col justify-between transition">
+          <div>
+            <div class="h-44 bg-cover bg-center rounded-xl relative mb-3" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=500&q=80');">
+              <span class="absolute top-2 right-2 bg-brand-gold text-brand-darker text-[10px] font-black px-2.5 py-0.5 rounded-full">Especial</span>
+            </div>
+            <h4 class="font-display font-bold text-base text-white">Prato Picanha na Chapa Executivo</h4>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Cortes nobres de picanha acebolada com batata frita crocante, tropeirinho e arroz.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+            <span class="text-lg font-black text-brand-gold">R$ 42,00</span>
+            <button onclick="addToCart('Prato Picanha na Chapa Executivo', 42.00)" class="bg-brand-accent hover:bg-orange-600 text-brand-darker text-xs font-black px-4 py-2.5 rounded-xl transition flex items-center gap-1.5 uppercase">
+              <i class="fa-solid fa-plus"></i> Pedir
+            </button>
+          </div>
+        </div>
+
+        <div class="glass-card p-4 rounded-2xl flex flex-col justify-between transition">
+          <div>
+            <div class="h-44 bg-cover bg-center rounded-xl relative mb-3" style="background-image: url('https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=500&q=80');">
+              <span class="absolute top-2 right-2 bg-brand-gold text-brand-darker text-[10px] font-black px-2.5 py-0.5 rounded-full">Farto</span>
+            </div>
+            <h4 class="font-display font-bold text-base text-white">Marmitex Cupim Desfiado</h4>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Cupim assado lentamente na brasa, derretendo, com mandioca na manteiga de garrafa.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+            <span class="text-lg font-black text-brand-gold">R$ 35,00</span>
+            <button onclick="addToCart('Marmitex Cupim Desfiado', 35.00)" class="bg-brand-accent hover:bg-orange-600 text-brand-darker text-xs font-black px-4 py-2.5 rounded-xl transition flex items-center gap-1.5 uppercase">
+              <i class="fa-solid fa-plus"></i> Pedir
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PORÇÕES & BEBIDAS -->
+    <section class="space-y-5">
+      <div class="flex items-center justify-between border-b border-orange-950/60 pb-3">
+        <div>
+          <span class="text-brand-amber font-extrabold text-xs uppercase tracking-widest">Para Compartilhar</span>
+          <h3 class="text-2xl font-display font-black text-white">Porções & Cervejas Geladas</h3>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <div class="glass-card p-4.5 rounded-2xl flex items-center justify-between">
+          <div>
+            <h5 class="font-bold text-sm text-white">Porção Torresmo Pururuca com Mandioca</h5>
+            <p class="text-xs text-slate-400 mt-0.5">Torresmo crocante sequinho com mandioca frita macia.</p>
+            <span class="text-base font-black text-brand-gold mt-1 block">R$ 38,00</span>
+          </div>
+          <button onclick="addToCart('Porcao Torresmo com Mandioca', 38.00)" class="bg-brand-accent hover:bg-orange-600 text-brand-darker text-xs font-black px-3.5 py-2.5 rounded-xl transition shrink-0 ml-3 uppercase">
+            + Adicionar
+          </button>
+        </div>
+
+        <div class="glass-card p-4.5 rounded-2xl flex items-center justify-between">
+          <div>
+            <h5 class="font-bold text-sm text-white">Cerveja Heineken / Original 600ml (Gelada)</h5>
+            <p class="text-xs text-slate-400 mt-0.5">Garrafa trincando de gelada entregue na temperatura certa.</p>
+            <span class="text-base font-black text-brand-gold mt-1 block">R$ 16,00</span>
+          </div>
+          <button onclick="addToCart('Cerveja 600ml Gelada', 16.00)" class="bg-brand-accent hover:bg-orange-600 text-brand-darker text-xs font-black px-3.5 py-2.5 rounded-xl transition shrink-0 ml-3 uppercase">
+            + Adicionar
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ OFICIAL & COMPLETO DA EMPRESA -->
+  <footer class="bg-brand-dark border-t border-orange-900/40 text-slate-300 pt-12 pb-8 px-4 mt-16 relative">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10 pb-8 border-b border-white/10">
+      
+      <!-- Coluna 1: Sobre a Empresa -->
+      <div class="space-y-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 bg-brand-accent text-brand-darker rounded-xl flex items-center justify-center font-black">
+            <i class="fa-solid fa-crown"></i>
+          </div>
+          <h4 class="font-display font-black text-white text-lg tracking-tight">REPÚBLICA DO CHURRASCO</h4>
+        </div>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Republica do Churrasco LTDA. Tradição em carnes na brasa, pratos fartos e refeições de qualidade no Morro do Cruzeiro em Ouro Preto.
+        </p>
+        <div class="pt-1">
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-3 py-1 rounded-full">
+            <i class="fa-solid fa-circle-check"></i> Empresa Ativa na Receita Federal
+          </span>
+        </div>
+      </div>
+
+      <!-- Coluna 2: Dados Oficiais CNPJ -->
+      <div class="space-y-2.5">
+        <h5 class="font-display font-extrabold text-white text-sm uppercase tracking-wider text-brand-gold">Informações Fiscais</h5>
+        <ul class="space-y-1.5 text-xs text-slate-400">
+          <li><strong class="text-slate-200">Razão Social:</strong> Republica do Churrasco LTDA</li>
+          <li><strong class="text-slate-200">CNPJ:</strong> 39.832.540/0001-77</li>
+          <li><strong class="text-slate-200">Data de Abertura:</strong> 18/11/2020 (há quase 6 anos)</li>
+          <li><strong class="text-slate-200">CNAE Principal:</strong> 56.11-2-01 - Restaurantes e similares</li>
+          <li><strong class="text-slate-200">Capital Social:</strong> R$ 30.000,00</li>
+        </ul>
+      </div>
+
+      <!-- Coluna 3: Localização & Atendimento -->
+      <div class="space-y-2.5">
+        <h5 class="font-display font-extrabold text-white text-sm uppercase tracking-wider text-brand-gold">Endereço & Sede</h5>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          <i class="fa-solid fa-location-dot text-brand-accent mr-1"></i>
+          Rua João Pedro da Silva, 517<br>
+          Morro do Cruzeiro, Ouro Preto - MG<br>
+          CEP: 35400-000
+        </p>
+        <div class="pt-1 text-xs text-slate-400">
+          <p><strong class="text-slate-200">Atendimento:</strong> Almoço & Jantar</p>
+          <p><strong class="text-slate-200">Bairro:</strong> Morro do Cruzeiro (Ouro Preto/MG)</p>
+        </div>
+      </div>
+
+      <!-- Coluna 4: Contato & Botões Oficiais -->
+      <div class="space-y-3">
+        <h5 class="font-display font-extrabold text-white text-sm uppercase tracking-wider text-brand-gold">Fale Conosco</h5>
+        <p class="text-xs text-slate-400">Faça seu pedido diretamente pelo WhatsApp corporativo:</p>
+        <a href="https://wa.me/553184454224" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3 px-4 rounded-xl transition flex items-center justify-center gap-2 shadow-lg">
+          <i class="fa-brands fa-whatsapp text-base"></i> (31) 8445-4224
+        </a>
+        <button onclick="openCNPJModal()" class="w-full bg-white/5 hover:bg-white/10 text-slate-300 font-bold text-xs py-2.5 px-4 rounded-xl transition border border-white/10 flex items-center justify-center gap-2">
+          <i class="fa-solid fa-file-contract text-brand-gold"></i> Cartão CNPJ Receita Federal
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Sub-rodapé com Direitos Autorais -->
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+      <p>© 2026 Republica do Churrasco LTDA. Todos os direitos reservados.</p>
+      <p class="flex items-center gap-1">
+        <span>Ouro Preto - Minas Gerais</span> • <span class="text-slate-400">CNPJ 39.832.540/0001-77</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- CART MODAL -->
+  <div id="cart-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-brand-dark border border-orange-900/60 rounded-3xl max-w-md w-full p-6 shadow-2xl relative flex flex-col max-h-[90vh]">
+      <div class="flex justify-between items-center border-b border-orange-900/50 pb-3 mb-4">
+        <h3 class="font-display font-bold text-lg text-white flex items-center gap-2">
+          <i class="fa-solid fa-basket-shopping text-brand-gold"></i> Sua Sacola
+        </h3>
+        <button onclick="toggleCartModal()" class="text-slate-400 hover:text-white font-bold p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div id="cart-items-container" class="space-y-3 overflow-y-auto flex-grow pr-1 divide-y divide-orange-900/40">
+      </div>
+
+      <div class="border-t border-orange-900/50 pt-4 mt-4">
+        <div class="flex justify-between items-center text-sm font-bold mb-4">
+          <span class="text-slate-300">Total do Pedido:</span>
+          <span id="cart-total-price" class="text-brand-gold text-xl font-black">R$ 0,00</span>
+        </div>
+
+        <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3.5 rounded-xl transition shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider">
+          <i class="fa-brands fa-whatsapp text-base"></i> Pedir pelo WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CNPJ MODAL -->
+  <div id="cnpj-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-brand-dark border border-orange-900/60 rounded-3xl max-w-lg w-full p-6 shadow-2xl relative">
+      <div class="flex justify-between items-center border-b border-orange-900/50 pb-3 mb-4">
+        <h3 class="font-display font-bold text-lg text-white flex items-center gap-2">
+          <i class="fa-solid fa-shield-check text-emerald-400"></i> Cartão CNPJ - Receita Federal
+        </h3>
+        <button onclick="openCNPJModal()" class="text-slate-400 hover:text-white font-bold p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      <div class="space-y-3 text-xs text-slate-300">
+        <div class="p-3 bg-black/40 rounded-2xl border border-white/10">
+          <span class="block text-[10px] uppercase font-bold text-orange-300">Razão Social</span>
+          <strong class="text-sm text-white font-display">Republica do Churrasco LTDA</strong>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-3 bg-black/40 rounded-2xl border border-white/10">
+            <span class="block text-[10px] uppercase text-orange-300">CNPJ Ativo</span>
+            <strong class="font-mono text-brand-gold">39.832.540/0001-77</strong>
+          </div>
+          <div class="p-3 bg-black/40 rounded-2xl border border-white/10">
+            <span class="block text-[10px] uppercase text-orange-300">Capital Social</span>
+            <strong class="text-white">R$ 30.000,00</strong>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-3 bg-black/40 rounded-2xl border border-white/10">
+            <span class="block text-[10px] uppercase text-orange-300">Data de Abertura</span>
+            <strong class="text-white">18/11/2020</strong>
+          </div>
+          <div class="p-3 bg-black/40 rounded-2xl border border-white/10">
+            <span class="block text-[10px] uppercase text-orange-300">Situação Cadastral</span>
+            <strong class="text-emerald-400">ATIVA (Receita Federal)</strong>
+          </div>
+        </div>
+        <div class="p-3 bg-black/40 rounded-2xl border border-white/10">
+          <span class="block text-[10px] uppercase text-orange-300">Sócio-Administrador</span>
+          <p class="font-medium text-white mt-0.5">• Marcos Gomes Pinto (Desde 18/11/2020)</p>
+        </div>
+      </div>
+      <div class="mt-5 text-right">
+        <button onclick="openCNPJModal()" class="bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCartUI();
+      showToast(`${name} adicionado!`);
+    }
+
+    function updateCartUI() {
+      const countEl = document.getElementById('header-cart-count');
+      const container = document.getElementById('cart-items-container');
+      const totalEl = document.getElementById('cart-total-price');
+
+      const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+      countEl.textContent = totalCount;
+
+      if (cart.length === 0) {
+        container.innerHTML = '<p class="text-xs text-slate-400 text-center py-6">Sua sacola está vazia.</p>';
+        totalEl.textContent = 'R$ 0,00';
+        return;
+      }
+
+      let html = '';
+      let totalPrice = 0;
+
+      cart.forEach((item, index) => {
+        const subtotal = item.price * item.qty;
+        totalPrice += subtotal;
+
+        html += `
+          <div class="py-3 flex justify-between items-center">
+            <div class="pr-2">
+              <h5 class="text-xs font-bold text-white">${item.name}</h5>
+              <span class="text-[11px] text-orange-300">R$ ${item.price.toFixed(2).replace('.', ',')} un</span>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <div class="flex items-center border border-orange-900 rounded-lg overflow-hidden text-xs">
+                <button onclick="changeQty(${index}, -1)" class="px-2 py-1 bg-white/5 text-white font-bold">-</button>
+                <span class="px-2.5 py-1 font-bold text-white">${item.qty}</span>
+                <button onclick="changeQty(${index}, 1)" class="px-2 py-1 bg-white/5 text-white font-bold">+</button>
+              </div>
+              <span class="text-xs font-black text-brand-gold w-16 text-right">R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      totalEl.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+    }
+
+    function changeQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    function toggleCartModal() {
+      document.getElementById('cart-modal').classList.toggle('hidden');
+    }
+
+    function openCNPJModal() {
+      document.getElementById('cnpj-modal').classList.toggle('hidden');
+    }
+
+    function checkoutWhatsApp() {
+      if (cart.length === 0) return alert('Sua sacola está vazia!');
+
+      let message = 'Olá! Gostaria de fazer o seguinte pedido na República do Churrasco (Morro do Cruzeiro/OP):\n\n';
+      let total = 0;
+
+      cart.forEach(item => {
+        const sub = item.price * item.qty;
+        total += sub;
+        message += `▪️ ${item.qty}x ${item.name} - R$ ${sub.toFixed(2).replace('.', ',')}\n`;
+      });
+
+      message += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*\n\nEndereço de Entrega / Retirada: `;
+      window.open(`https://wa.me/553184454224?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    function showToast(text) {
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-5 right-5 bg-brand-accent text-brand-darker text-xs font-bold px-4 py-3 rounded-2xl shadow-2xl z-50 flex items-center gap-2 border border-brand-gold';
+      toast.innerHTML = `<i class="fa-solid fa-circle-check text-brand-darker"></i> ${text}`;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+  </script>
+</body>
+</html>
